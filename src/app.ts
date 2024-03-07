@@ -6,7 +6,7 @@ import config from "./configs";
 import limiter from "./services/rate-limiter";
 import bodyParser from "body-parser";
 import morgan from "morgan";
-import authRouter from "./user-auth/entry-point/api/auth.routes";
+import authRouter from "./entry-point/api/auth.routes";
 import connectDB from "./database";
 import { errorLogger, errorResponder } from "./middlewares/error.middleware";
 

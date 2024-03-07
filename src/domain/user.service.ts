@@ -1,12 +1,12 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { UserDTO } from "./user.dto";
 import { createUser, findUserByEmail } from "../data-access/user.repository";
-import { HttpError } from "../../utils/httpError";
+import { IUser, User } from "../data-access/user.model";
+import { HttpError } from "../utils/httpError";
 
 
-export const registerUserFlow = async (userDto: UserDTO) => {
-  const { username, email, password, fullName, address, phone } = userDto;
+export const userRegister = async (user: IUser) => {
+  const { username, email, password, fullName, address, phone } = user;
 
   // Check if user already exists
   const existingUser = await findUserByEmail(email);
@@ -17,9 +17,9 @@ export const registerUserFlow = async (userDto: UserDTO) => {
   // Hash the password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-
-  // Create a new user
-  await createUser({
+  
+  // Create a new user using the User model
+  const newUser: IUser = new User({
     username,
     email,
     password: hashedPassword,
@@ -27,9 +27,11 @@ export const registerUserFlow = async (userDto: UserDTO) => {
     address,
     phone,
   });
+
+  await createUser(newUser);
 };
 
-export const loginUserFlow = async (credentials: {
+export const userLogin = async (credentials: {
   email: string;
   password: string;
 }) => {

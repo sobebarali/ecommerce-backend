@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../app/app";
+import app from "../src/app";
 import { randomUUID } from "crypto";
 
 describe("Auth Endpoints", () => {
