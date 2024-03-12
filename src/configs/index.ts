@@ -13,6 +13,7 @@ let config = {
   AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID || "",
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY || "",
   MONGO_URI: process.env.MONGO_URI || "mongodb://localhost:27017/ceta-ai",
+  JSON_WEB_TOKEN_SECRET: process.env.JSON_WEB_TOKEN_SECRET || "my-top-secret",  
 };
 
 export default config;

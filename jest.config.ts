@@ -3,7 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
@@ -28,10 +28,7 @@ const config: Config = {
   coverageDirectory: "coverage",
 
   // An array of regexp pattern strings used to skip coverage collection
-  coveragePathIgnorePatterns: [
-    "/node_modules/",
-    "dist/",
-  ],
+  coveragePathIgnorePatterns: ["/node_modules/", "dist/"],
 
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: "v8",

@@ -1,15 +1,13 @@
-import express, { Application } from "express";
-import cors from "cors";
-import compression from "compression";
-import helmet from "helmet";
-import config from "./configs";
-import limiter from "./services/rate-limiter";
 import bodyParser from "body-parser";
+import compression from "compression";
+import cors from "cors";
+import express, { Application } from "express";
+import helmet from "helmet";
 import morgan from "morgan";
-import authRouter from "./entry-point/api/auth.routes";
+import config from "./configs";
 import connectDB from "./database";
-import { errorLogger, errorResponder } from "./middlewares/error.middleware";
-
+import authRouter from "./entry-point/api/routes/auth.routes";
+import limiter from "./services/rate-limiter";
 
 const app: Application = express();
 const port = config.PORT;
@@ -17,7 +15,6 @@ const port = config.PORT;
 const env = config.NODE_ENV;
 const isDevelopment = !env || env === "development";
 const prodCorsOrigin = config.PROD_CORS_ORIGIN;
-
 
 if (process.env.NODE_ENV !== "test") {
   if (isDevelopment) {
@@ -47,10 +44,6 @@ app.use(morgan("dev"));
 //api routes
 app.use("/api", authRouter);
 
-// Error handling middleware
-app.use(errorLogger);
-app.use(errorResponder);
-
 
 // Handle undefined routes
 app.use((req, res, next) => {
@@ -70,4 +63,3 @@ connectDB().then(() => {
 });
 
 export default app;
-

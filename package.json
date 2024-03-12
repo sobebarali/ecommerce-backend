@@ -12,7 +12,7 @@
     "test": "jest --watchAll --coverage",
     "test:ci": "jest --ci --coverage",
     "start": "node dist/app.js",
-    "dev": "nodemon app/app.ts"
+    "dev": "nodemon src/app.ts"
   },
   "keywords": [],
   "author": "",
