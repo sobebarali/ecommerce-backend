@@ -30,14 +30,8 @@ export default async function endpointLogin(
     let result = await login({ req, res });
      if (result.error) {
        return res.status(result.error.status).send(result.error);
-     } else if (result.data) {
-       return res.status(result.data.status).send(result.data);
      } else {
-       return res.status(500).send({
-         status: 500,
-         code: "SOMETHING_WENT_WRONG",
-         message: "Something went wrong",
-       });
-     }
+       return res.status(result?.data?.status || 500).send(result.data);
+     } 
   }
 }

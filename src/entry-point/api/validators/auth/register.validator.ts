@@ -28,16 +28,10 @@ export default async function endpointRegister(
   } else {
     let result = await register({ req, res });
 
-    if (result.error) {
-      return res.status(result.error.status).send(result.error);
-    } else if (result.data) {
-      return res.status(result.data.status).send(result.data);
-    } else {
-      return res.status(500).send({
-        status: 500,
-        code: "SOMETHING_WENT_WRONG",
-        message: "Something went wrong",
-      });
-    }
+     if (result.error) {
+       return res.status(result.error.status).send(result.error);
+     } else {
+       return res.status(result?.data?.status || 500).send(result.data);
+     } 
   }
 }
