@@ -2,9 +2,6 @@
 
 This project is a microservices-based backend system for a simple e-commerce application. It is built using TypeScript, Express.js, and MongoDB. The system handles user authentication, product management, and order processing, with a focus on concurrency control and high availability through clustering.
 
-user-auth-service: https://github.com/sobebarali/user-auth-service
-product-management-service: https://github.com/sobebarali/product-management-service
-order-processing-service: https://github.com/sobebarali/order-service
 
 ## Microservices Repositories
 - [User Authentication Service](https://github.com/sobebarali/user-auth-service)
